@@ -21,10 +21,10 @@ function App() {
     if (!hasUpvoted(startupId)) {
       setStartups(prevStartups =>
         [...prevStartups]
-          .map(startup =>
-            startup.id === startupId
-              ? { ...startup, upvotes: startup.upvotes + 1 }
-              : startup
+          .map(s =>
+            s.id === startupId
+              ? { ...s, upvotes: s.upvotes + 1 }
+              : s
           )
           .sort((a, b) => b.upvotes - a.upvotes)
       );
@@ -35,25 +35,19 @@ function App() {
   const shouldShowStartups = selectedCategory !== null || searchQuery.trim() !== '';
 
   const filteredStartups = shouldShowStartups
-    ? startups.filter(startup => {
-        const matchesCategory = !selectedCategory || startup.category === selectedCategory;
+    ? startups.filter(s => {
+        const matchesCategory = !selectedCategory || s.category === selectedCategory;
+        const searchLower = searchQuery.toLowerCase();
         const matchesSearch = !searchQuery || 
-          startup.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          startup.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          startup.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+          s.name.toLowerCase().includes(searchLower) ||
+          s.description.toLowerCase().includes(searchLower) ||
+          s.tags.some(tag => tag.toLowerCase().includes(searchLower));
         return matchesCategory && matchesSearch;
       })
     : [];
 
-  // Only show recent startups when no search or category is active
   const recentStartups = !shouldShowStartups
-    ? startups
-        .filter(startup => {
-          // For demo purposes, showing all startups
-          // In production, you would filter based on creation date
-          return true;
-        })
-        .slice(0, 3)
+    ? startups.slice(0, 3)
     : [];
 
   return (
