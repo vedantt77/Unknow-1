@@ -9,8 +9,7 @@ export const startups: Startup[] = [
     logo: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=150&h=150&fit=crop',
     website: 'https://marketmaster.example.com',
     tags: ['Marketing Automation', 'AI', 'Analytics'],
-    mrr: 25000,
-    
+    mrr: 25000
   },
   {
     id: '2',
@@ -31,15 +30,13 @@ export const startups: Startup[] = [
     logo: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?w=150&h=150&fit=crop',
     website: 'https://businessflow.example.com',
     tags: ['Operations', 'Workflow', 'Management'],
-    mrr: 50000,
-    askingPrice: 1500000
+    mrr: 50000
   },
   {
     id: '4',
     name: 'AnalyticsPro',
     description: 'Advanced analytics and reporting for modern businesses',
     category: 'business',
-    askingPrice: 3000000,
     logo: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&h=150&fit=crop',
     website: 'https://analyticspro.example.com',
     tags: ['Analytics', 'Business Intelligence', 'Reporting'],

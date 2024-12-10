@@ -62,9 +62,11 @@ export function StartupCard({ startup }: StartupCardProps) {
               <Badge variant="outline" className="bg-primary/5">
                 MRR: {formatCurrency(startup.mrr)}
               </Badge>
-              <Badge variant="outline" className="bg-secondary/5">
-                Asking Price: {formatCurrency(startup.askingPrice)}
-              </Badge>
+              {startup.category === 'sales' && startup.askingPrice && (
+                <Badge variant="outline" className="bg-secondary/5">
+                  Asking Price: {formatCurrency(startup.askingPrice)}
+                </Badge>
+              )}
             </div>
           </div>
         </CardContent>
