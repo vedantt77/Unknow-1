@@ -4,9 +4,8 @@ export interface Startup {
   description: string;
   category: 'marketing' | 'business' | 'sales';
   logo: string;
-  price?: number;
+  askingPrice: number;
   website: string;
   tags: string[];
-  upvotes: number;
-  createdAt: string; // ISO date string
+  mrr: number;
 }
