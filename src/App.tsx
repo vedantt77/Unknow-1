@@ -5,20 +5,13 @@ import { StartupGrid } from '@/components/StartupGrid';
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { SearchBar } from '@/components/SearchBar';
 import { motion } from 'framer-motion';
+import { filterStartups } from '@/lib/filters';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredStartups = startups.filter(s => {
-    const matchesCategory = !selectedCategory || s.category === selectedCategory;
-    const searchLower = searchQuery.toLowerCase();
-    const matchesSearch = !searchQuery || 
-      s.name.toLowerCase().includes(searchLower) ||
-      s.description.toLowerCase().includes(searchLower) ||
-      s.tags.some(tag => tag.toLowerCase().includes(searchLower));
-    return matchesCategory && matchesSearch;
-  });
+  const filteredStartups = filterStartups(startups, selectedCategory, searchQuery);
 
   return (
     <div className="min-h-screen bg-background">

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { BarChart3, LineChart, ShoppingCart } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { categories } from '@/lib/categories';
 
 interface CategoryFilterProps {
   selectedCategory: string | null;
@@ -12,27 +12,6 @@ export function CategoryFilter({
   selectedCategory,
   onCategoryChange,
 }: CategoryFilterProps) {
-  const categories = [
-    {
-      id: 'marketing',
-      label: 'Marketing',
-      icon: LineChart,
-      description: 'Tools for growth and audience engagement',
-    },
-    {
-      id: 'business',
-      label: 'Business',
-      icon: BarChart3,
-      description: 'Solutions for operations and management',
-    },
-    {
-      id: 'sales',
-      label: 'Sales',
-      icon: ShoppingCart,
-      description: 'CRM and revenue optimization tools',
-    },
-  ];
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {categories.map(({ id, label, icon: Icon, description }) => (

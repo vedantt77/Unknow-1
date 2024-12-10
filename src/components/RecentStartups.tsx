@@ -13,15 +13,17 @@ interface RecentStartupsProps {
 export function RecentStartups({ startups, onUpvote, hasUpvoted }: RecentStartupsProps) {
   const recentStartups = startups
     .filter(startup => {
+      if (!startup.createdAt) return false;
       const daysSinceCreation = differenceInDays(
         new Date(),
         new Date(startup.createdAt)
       );
       return daysSinceCreation <= 7;
     })
-    .sort((a, b) => 
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    .sort((a, b) => {
+      if (!a.createdAt || !b.createdAt) return 0;
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
 
   if (recentStartups.length === 0) {
     return null;
